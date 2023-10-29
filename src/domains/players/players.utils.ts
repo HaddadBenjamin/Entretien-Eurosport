@@ -1,0 +1,48 @@
+import { getMinutesFromDate } from "../../shared/utils/date";
+import { IPlayerComputedProps, IPlayerMatch } from "./players.model";
+
+export const getTotalTimePlayedByPlayerIdAsMinutes = (
+  playerId: string,
+  matches: IPlayerMatch[]
+): number =>
+  getPlayerMatches(playerId, matches)
+    .map(
+      ({ startTime, endTime }) =>
+        getMinutesFromDate(new Date(endTime)) -
+        getMinutesFromDate(new Date(startTime))
+    )
+    .reduce(
+      (playerTotalTimePlayer, matchDurationAsMilliseconds) =>
+        playerTotalTimePlayer + matchDurationAsMilliseconds,
+      0
+    );
+
+export const getPlayerMatches = (
+  playerId: string,
+  matches: IPlayerMatch[]
+): IPlayerMatch[] =>
+  matches.filter(({ players }) => players.some(({ id }) => id === playerId));
+
+export const getPlayerWinCount = (
+  playerId: string,
+  matches: IPlayerMatch[]
+): number =>
+  getPlayerMatches(playerId, matches).filter(
+    ({ winner: { id } }) => id === playerId
+  ).length;
+
+export const getPlayerLooseCount = (
+  playerId: string,
+  matches: IPlayerMatch[]
+): number =>
+  getPlayerMatches(playerId, matches).length -
+  getPlayerWinCount(playerId, matches);
+
+export const getPlayerComputedProps = (
+  playerId: string,
+  matches: IPlayerMatch[]
+): IPlayerComputedProps => ({
+  totalTimePlayed: getTotalTimePlayedByPlayerIdAsMinutes(playerId, matches),
+  winCount: getPlayerWinCount(playerId, matches),
+  looseCount: getPlayerLooseCount(playerId, matches),
+});

@@ -38,19 +38,22 @@ const Players: React.FC<IProps> = ({ widthBackHomeButton = false }) => {
   }, [matchesResponse, playersResponse]);
 
   return (
-    <div className="flex flex-wrap gap-4">
-      {playersLoading || matchesLoading
-        ? "Loading..."
-        : playersError || matchesError
-        ? "Error..."
-        : playersResponse?.players?.map((player: IPlayer) => (
-            <PlayerCard
-              {...player}
-              key={`player-${player.id}`}
-              {...(playersComputedProps?.get(player.id) ?? {})}
-              widthBackHomeButton={widthBackHomeButton}
-            />
-          ))}
+    <div>
+      <div className="font-bold text-xl flex justify-center mb-6">Players</div>
+      <div className="flex flex-wrap gap-4">
+        {playersLoading || matchesLoading
+          ? "Loading..."
+          : playersError || matchesError
+          ? "Error..."
+          : playersResponse?.players?.map((player: IPlayer) => (
+              <PlayerCard
+                {...player}
+                key={`player-${player.id}`}
+                {...(playersComputedProps?.get(player.id) ?? {})}
+                widthBackHomeButton={widthBackHomeButton}
+              />
+            ))}
+      </div>
     </div>
   );
 };

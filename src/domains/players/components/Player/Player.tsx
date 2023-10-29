@@ -53,6 +53,9 @@ const Player: React.FC = () => {
         "Error..."
       ) : (
         <div>
+          <div className="font-bold text-xl flex justify-center mb-6">
+            Player
+          </div>
           <div className="flex  justify-center flex-wrap gap-4">
             <PlayerCard
               {...player}

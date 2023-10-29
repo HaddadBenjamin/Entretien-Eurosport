@@ -53,7 +53,7 @@ const Player: React.FC = () => {
         "Error..."
       ) : (
         <div>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex  justify-center flex-wrap gap-4">
             <PlayerCard
               {...player}
               key={`player-${player.id}`}
@@ -62,7 +62,7 @@ const Player: React.FC = () => {
             />
           </div>
 
-          <div className="font-bold text-xl flex justify-center mt-6 mb-6">
+          <div className="font-bold text-xl flex justify-center mt-12 mb-6">
             Win games
           </div>
 

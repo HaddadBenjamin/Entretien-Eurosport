@@ -14,7 +14,7 @@ const PlayerMatch: React.FC<IPlayerMatch & IProps> = ({
   winner,
   playerId,
 }) => (
-  <div className="w-1/1 p-1 bg-gray-200 max-w-sm rounded overflow-hidden shadow-lg p-3">
+  <div className="bg-gray-200 w-96 rounded overflow-hidden shadow-lg p-3">
     <PlayerLabel
       label="Opponent"
       text={`${players.find(({ id }) => id !== playerId)!.firstname} ${

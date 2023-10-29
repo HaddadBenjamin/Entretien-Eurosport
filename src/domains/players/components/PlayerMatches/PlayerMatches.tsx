@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const PlayerMatches: React.FC<IProps> = ({ matches, playerId }) => (
-  <div className="flex flex-wrap gap-4 mt-4">
+  <div className="flex flex-wrap gap-4 mt-4 justify-center">
     {matches.map((match, index) => (
       <PlayerMatch
         key={`player-match-${index}`}

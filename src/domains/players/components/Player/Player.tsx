@@ -68,6 +68,7 @@ const Player: React.FC = () => {
 
           <PlayerMatches
             matches={getPlayerWinMatches(player.id, matchesResponse.matches)}
+            playerId={playerId}
           />
         </div>
       )}

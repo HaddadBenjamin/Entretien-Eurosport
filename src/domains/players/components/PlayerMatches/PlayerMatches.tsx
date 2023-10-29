@@ -3,12 +3,17 @@ import PlayerMatch from "../PlayerMatch/PlayerMatch";
 
 interface IProps {
   matches: IPlayerMatch[];
+  playerId: string;
 }
 
-const PlayerMatches: React.FC<IProps> = ({ matches }) => (
+const PlayerMatches: React.FC<IProps> = ({ matches, playerId }) => (
   <div className="flex flex-wrap gap-4 mt-4">
     {matches.map((match, index) => (
-      <PlayerMatch key={`player-match-${index}`} {...match} />
+      <PlayerMatch
+        key={`player-match-${index}`}
+        {...match}
+        playerId={playerId}
+      />
     ))}
   </div>
 );

@@ -5,7 +5,11 @@ import PlayerCard from "../PlayerCard/PlayerCard";
 import { useEffect, useState } from "react";
 import { getPlayerComputedProps } from "../../players.utils";
 
-const Players: React.FC = () => {
+interface IProps {
+  widthBackHomeButton: boolean;
+}
+
+const Players: React.FC<IProps> = ({ widthBackHomeButton = false }) => {
   const {
     error: playersError,
     loading: playersLoading,
@@ -44,6 +48,7 @@ const Players: React.FC = () => {
               {...player}
               key={`player-${player.id}`}
               {...(playersComputedProps?.get(player.id) ?? {})}
+              widthBackHomeButton={widthBackHomeButton}
             />
           ))}
     </div>

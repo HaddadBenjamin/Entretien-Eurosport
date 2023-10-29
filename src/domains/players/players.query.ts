@@ -33,17 +33,6 @@ export const GET_PLAYERS = gql`
   ${PLAYER_FIELDS}
 `;
 
-export const GET_PLAYER = gql`
-  query GetPlayerById($id: ID!) {
-    player(id: $id) {
-      id
-      firstname
-      lastname
-    }
-  }
-  ${PLAYER_FIELDS}
-`;
-
 export const GET_MACTCHES = gql`
   query {
     matches {

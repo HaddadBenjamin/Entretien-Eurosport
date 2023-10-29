@@ -1,23 +1,68 @@
 import { useQuery } from "@apollo/client";
-import { GET_PLAYER } from "../../players.query";
+import { GET_MACTCHES, GET_PLAYERS } from "../../players.query";
 import PlayerCard from "../PlayerCard/PlayerCard";
-import { useParams } from "react-router-dom";
-import { PlayerRouteParams } from "../../players.model";
+import {
+  PlayerRouteParams,
+  IPlayerComputedProps,
+  IPlayer,
+  IPlayerMatch,
+} from "../../players.model";
+import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import { getPlayerComputedProps, getPlayerMatches } from "../../players.utils";
+import PlayerMatches from "../PlayerMatches/PlayerMatches";
 
 const Player: React.FC = () => {
   const { playerId } = useParams<PlayerRouteParams>();
-  const { error, loading, data } = useQuery(GET_PLAYER, {
-    variables: { id: playerId },
-  });
+  const {
+    error: playerError,
+    loading: playerLoading,
+    data: playerResponse,
+  } = useQuery(GET_PLAYERS);
+  const [player, setPlayer] = useState<IPlayer | undefined>();
+  const {
+    error: matchesError,
+    loading: matchesLoading,
+    data: matchesResponse,
+  } = useQuery(GET_MACTCHES);
+  const [computedProps, setComputedProps] = useState<IPlayerComputedProps>();
+
+  useEffect(() => {
+    if (matchesResponse && playerResponse) {
+      const playerValue = playerResponse.players.find(
+        ({ id }: IPlayer) => id === playerId
+      );
+
+      if (playerValue) {
+        setPlayer(playerValue);
+        setComputedProps(
+          getPlayerComputedProps(playerValue.id, matchesResponse.matches)
+        );
+      }
+    }
+  }, [matchesResponse, playerResponse]);
 
   return (
-    <div className="flex flex-wrap gap-4">
-      {loading ? (
+    <div>
+      {playerLoading || matchesLoading ? (
         "Loading..."
-      ) : error ? (
+      ) : playerError || matchesError || !player ? (
         "Error..."
       ) : (
-        <PlayerCard {...data.player} key={`player-${data.player.id}`} />
+        <div>
+          <div className="flex flex-wrap gap-4">
+            <PlayerCard
+              {...player}
+              key={`player-${player.id}`}
+              {...computedProps}
+              widthBackHomeButton
+            />
+          </div>
+
+          <PlayerMatches
+            matches={getPlayerMatches(player.id, matchesResponse.matches)}
+          />
+        </div>
       )}
     </div>
   );

@@ -1,7 +1,8 @@
-import { formatMinutesToText } from "../../../../shared/utils/date";
 import { IPlayer, IPlayerComputedProps } from "../../players.model";
-import { Link } from "react-router-dom";
 import PlayerLabel from "../PlayerLabel/PlayerLabel";
+import { formatMinutesToText } from "@/shared/utils/date";
+import Link from "next/link";
+import Image from "next/image";
 
 const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   firstname,
@@ -15,15 +16,27 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   totalTimePlayed = 0,
   winCount = 0,
   looseCount = 0,
+  widthBackHomeButton,
 }) => (
   <Link
-    to={`players/${id}`}
-    className="w-1/3 p-3 bg-gray-200 max-w-sm rounded overflow-hidden shadow-lg"
+    href={`/players/${id}`}
+    className="w-1/1 p-1 bg-gray-200 max-w-sm rounded overflow-hidden shadow-lg pt-4"
   >
-    <img className="w-full" src={url} alt="Placeholder" />
+    <Image
+      src={url}
+      width={245}
+      height={337.5}
+      alt={`Picture of ${firstname} ${lastname}`}
+      className="m-auto mt-4"
+    />
     <div className="px-6 py-4">
-      <div className="flex mb-2 items-center ">
-        <img className="h-8" src={countryUrl} alt="Placeholder" />
+      <div className="flex mb-4 items-center justify-center">
+        <Image
+          src={countryUrl}
+          width={48}
+          height={32}
+          alt={`Flag of ${firstname} ${lastname}`}
+        />
         <span className="font-bold text-xl ml-2">
           {firstname} {lastname}
         </span>
@@ -39,6 +52,16 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
       />
       <PlayerLabel label="Win count" text={winCount.toString()} />
       <PlayerLabel label="Loose count" text={looseCount.toString()} />
+
+      {widthBackHomeButton && (
+        <Link href={"/"}>
+          <div className="flex justify-center">
+            <button className="font-bold text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
+              Go back to home
+            </button>
+          </div>
+        </Link>
+      )}
     </div>
   </Link>
 );

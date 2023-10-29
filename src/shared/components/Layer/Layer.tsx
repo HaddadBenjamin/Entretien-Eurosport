@@ -1,3 +1,5 @@
+import graphQLClient from "@/clients/graphQLClient";
+import { ApolloProvider } from "@apollo/client";
 import React, { ReactNode } from "react";
 
 interface IProps {
@@ -5,7 +7,9 @@ interface IProps {
 }
 
 const Layer: React.FC<IProps> = ({ children }) => (
-  <div className="w-full mx-auto max-w-7xl">{children}</div>
+  <ApolloProvider client={graphQLClient}>
+    <div className="w-full mx-auto max-w-7xl">{children}</div>
+  </ApolloProvider>
 );
 
 export default Layer;

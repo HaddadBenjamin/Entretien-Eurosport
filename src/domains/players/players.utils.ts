@@ -1,16 +1,19 @@
-import { getMinutesFromDate } from "../../shared/utils/date";
+import { getMinutesFromDate } from "@/shared/utils/date";
 import { IPlayerComputedProps, IPlayerMatch } from "./players.model";
+
+export const getMatchDurationAsMinutes = ({
+  startTime,
+  endTime,
+}: IPlayerMatch): number =>
+  getMinutesFromDate(new Date(endTime)) -
+  getMinutesFromDate(new Date(startTime));
 
 export const getTotalTimePlayedByPlayerIdAsMinutes = (
   playerId: string,
   matches: IPlayerMatch[]
 ): number =>
   getPlayerMatches(playerId, matches)
-    .map(
-      ({ startTime, endTime }) =>
-        getMinutesFromDate(new Date(endTime)) -
-        getMinutesFromDate(new Date(startTime))
-    )
+    .map(getMatchDurationAsMinutes)
     .reduce(
       (playerTotalTimePlayer, matchDurationAsMilliseconds) =>
         playerTotalTimePlayer + matchDurationAsMilliseconds,

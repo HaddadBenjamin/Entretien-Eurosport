@@ -1,5 +1,7 @@
-# React + TypeScript + Vite
+# Installation
 
-Install dependencies: yarn
+npm install
 
-Run project: yarn dev > http://localhost:5173/
+# Run project
+
+npm run dev > http://localhost:3000/

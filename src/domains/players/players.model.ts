@@ -11,6 +11,7 @@ export interface IPlayerComputedProps {
   totalTimePlayed?: number;
   winCount?: number;
   looseCount?: number;
+  widthBackHomeButton?: boolean;
 }
 
 export type PlayerRouteParams = {

@@ -37,13 +37,14 @@ export const GET_MACTCHES = gql`
   query {
     matches {
       players {
-        id
+        ...PlayerFields
       }
       winner {
-        id
+        ...PlayerFields
       }
       startTime
       endTime
     }
   }
+  ${PLAYER_FIELDS}
 `;

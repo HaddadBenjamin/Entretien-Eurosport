@@ -9,7 +9,10 @@ import {
 } from "../../players.model";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { getPlayerComputedProps, getPlayerMatches } from "../../players.utils";
+import {
+  getPlayerComputedProps,
+  getPlayerWinMatches,
+} from "../../players.utils";
 import PlayerMatches from "../PlayerMatches/PlayerMatches";
 
 const Player: React.FC = () => {
@@ -59,8 +62,12 @@ const Player: React.FC = () => {
             />
           </div>
 
+          <div className="font-bold text-xl flex justify-center mt-6 mb-6">
+            Win games
+          </div>
+
           <PlayerMatches
-            matches={getPlayerMatches(player.id, matchesResponse.matches)}
+            matches={getPlayerWinMatches(player.id, matchesResponse.matches)}
           />
         </div>
       )}

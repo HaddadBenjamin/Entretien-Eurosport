@@ -26,13 +26,18 @@ export const getPlayerMatches = (
 ): IPlayerMatch[] =>
   matches.filter(({ players }) => players.some(({ id }) => id === playerId));
 
+export const getPlayerWinMatches = (
+  playerId: string,
+  matches: IPlayerMatch[]
+): IPlayerMatch[] =>
+  getPlayerMatches(playerId, matches).filter(
+    ({ winner: { id } }) => id === playerId
+  );
+
 export const getPlayerWinCount = (
   playerId: string,
   matches: IPlayerMatch[]
-): number =>
-  getPlayerMatches(playerId, matches).filter(
-    ({ winner: { id } }) => id === playerId
-  ).length;
+): number => getPlayerWinMatches(playerId, matches).length;
 
 export const getPlayerLooseCount = (
   playerId: string,

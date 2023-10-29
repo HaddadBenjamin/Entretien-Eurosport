@@ -11,8 +11,8 @@ const PlayerMatch: React.FC<IPlayerMatch> = ({
 }) => (
   <div className="w-1/1 p-1 bg-gray-200 max-w-sm rounded overflow-hidden shadow-lg pt-4">
     <PlayerLabel
-      label="Players"
-      text={`${players[0].firstname} ${players[0].lastname} VERSUS ${players[1].firstname} ${players[1].lastname}`}
+      label="Opponent"
+      text={`${players[0].firstname} ${players[0].lastname}`}
     />
     <PlayerLabel
       label="Match duration"
@@ -24,10 +24,6 @@ const PlayerMatch: React.FC<IPlayerMatch> = ({
           winner,
         })
       )}
-    />
-    <PlayerLabel
-      label="Winner"
-      text={`${winner.firstname} ${winner.lastname}`}
     />
   </div>
 );

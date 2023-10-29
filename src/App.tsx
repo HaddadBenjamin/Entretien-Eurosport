@@ -1,6 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
 import graphQLClient from "./clients/graphQLClient";
 import "./styles/tailwind.css";
+import "./styles/styles.css";
 import Layer from "./shared/components/Layer/Layer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlayersPage from "./pages/Players";
@@ -20,7 +21,7 @@ const App = () => (
           {
             path: "/players",
             element: <PlayersPage />,
-             errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />,
           },
           {
             path: "players/:playerId",

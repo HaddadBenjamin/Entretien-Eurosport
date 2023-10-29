@@ -15,6 +15,12 @@ const PLAYER_FIELDS = gql`
       height
       age
     }
+    country {
+      picture {
+        url
+      }
+      code
+    }
   }
 `;
 

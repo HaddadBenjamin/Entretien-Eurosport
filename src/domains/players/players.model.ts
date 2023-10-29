@@ -4,6 +4,7 @@ export interface IPlayer {
   lastname: string;
   picture: IPlayerPicture;
   stats: IPlayerStats;
+  country: IPlayerCountry;
 }
 
 export interface IPlayerComputedProps {
@@ -33,4 +34,9 @@ export interface IPlayerStats {
   weight: number;
   height: number;
   age: number;
+}
+
+export interface IPlayerCountry {
+  picture: IPlayerPicture;
+  code: string;
 }

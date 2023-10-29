@@ -9,6 +9,9 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   id,
   picture: { url },
   stats: { rank, points, weight, height, age },
+  country: {
+    picture: { url: countryUrl },
+  },
   totalTimePlayed = 0,
   winCount = 0,
   looseCount = 0,
@@ -19,8 +22,11 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   >
     <img className="w-full" src={url} alt="Placeholder" />
     <div className="px-6 py-4">
-      <div className="font-bold text-xl mb-2">
-        {firstname} {lastname}
+      <div className="flex mb-2 items-center ">
+        <img className="h-8" src={countryUrl} alt="Placeholder" />
+        <span className="font-bold text-xl ml-2">
+          {firstname} {lastname}
+        </span>
       </div>
       <PlayerLabel label="Rank" text={rank.toString()} />
       <PlayerLabel label="Points" text={points.toString()} />

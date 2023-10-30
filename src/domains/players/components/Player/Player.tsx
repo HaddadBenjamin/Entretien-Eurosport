@@ -14,6 +14,7 @@ import {
   getPlayerWinMatches,
 } from "../../players.utils";
 import PlayerMatches from "../PlayerMatches/PlayerMatches";
+import BoldTitle from "@/shared/components/BoldTitle/BoldTitle";
 
 const Player: React.FC = () => {
   const { playerId } = useParams<PlayerRouteParams>();
@@ -53,9 +54,7 @@ const Player: React.FC = () => {
         "Error..."
       ) : (
         <div>
-          <div className="font-bold text-xl flex justify-center mb-6">
-            Player
-          </div>
+          <BoldTitle text="Player" className="mb-6" />
           <div className="flex  justify-center flex-wrap gap-4">
             <PlayerCard
               {...player}
@@ -65,9 +64,7 @@ const Player: React.FC = () => {
             />
           </div>
 
-          <div className="font-bold text-xl flex justify-center mt-12 mb-6">
-            Win games
-          </div>
+          <BoldTitle text="Win games" className="mt-12 mb-6" />
 
           <PlayerMatches
             matches={getPlayerWinMatches(player.id, matchesResponse.matches)}

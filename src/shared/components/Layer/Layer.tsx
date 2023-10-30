@@ -8,7 +8,7 @@ interface IProps {
 
 const Layer: React.FC<IProps> = ({ children }) => (
   <ApolloProvider client={graphQLClient}>
-    <div className="w-full mx-auto max-w-7xl">{children}</div>
+    <div className="w-full mx-auto max-w-7xl px-24 pb-12">{children}</div>
   </ApolloProvider>
 );
 

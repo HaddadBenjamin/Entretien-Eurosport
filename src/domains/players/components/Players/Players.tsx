@@ -4,9 +4,10 @@ import { IPlayer, IPlayerComputedProps } from "../../players.model";
 import PlayerCard from "../PlayerCard/PlayerCard";
 import { useEffect, useState } from "react";
 import { getPlayerComputedProps } from "../../players.utils";
+import BoldTitle from "@/shared/components/BoldTitle/BoldTitle";
 
 interface IProps {
-  widthBackHomeButton: boolean;
+  widthBackHomeButton?: boolean;
 }
 
 const Players: React.FC<IProps> = ({ widthBackHomeButton = false }) => {
@@ -39,7 +40,7 @@ const Players: React.FC<IProps> = ({ widthBackHomeButton = false }) => {
 
   return (
     <div>
-      <div className="font-bold text-xl flex justify-center mb-6">Players</div>
+      <BoldTitle text="Players" className="text-xl  mb-6" />
       <div className="flex flex-wrap gap-4">
         {playersLoading || matchesLoading
           ? "Loading..."

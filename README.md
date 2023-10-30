@@ -1,3 +1,7 @@
+# Technologies
+
+NextJS, TypeScript, Tailwind, Cypress
+
 # Installation
 
 npm install

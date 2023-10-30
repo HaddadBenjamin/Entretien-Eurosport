@@ -4,7 +4,7 @@ interface IProps {
 }
 
 const Card: React.FC<IProps> = ({ className, children }) => (
-  <div className={`bg-gray-200 rounded overflow-hidden shadow-lg ${className}`}>
+  <div className={`bg-blue-100 rounded overflow-hidden shadow-lg ${className}`}>
     {children}
   </div>
 );

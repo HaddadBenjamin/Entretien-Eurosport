@@ -21,3 +21,6 @@ export const formatMinutesToText = (minutes: number): string => {
 
   return result.trim();
 };
+
+export const getDurationAsMinutes = (startTime: Date, endTime: Date): number =>
+  getMinutesFromDate(endTime) - getMinutesFromDate(startTime);

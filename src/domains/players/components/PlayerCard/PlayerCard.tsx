@@ -4,6 +4,7 @@ import { formatMinutesToText } from "@/shared/utils/date";
 import Link from "next/link";
 import Image from "next/image";
 import Card from "@/shared/components/Card/Card";
+import Button from "@/shared/components/Button/Button";
 
 const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   firstname,
@@ -20,7 +21,7 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   widthBackHomeButton,
 }) => (
   <Card className="w-1/1 p-1 max-w-sm pt-4">
-    <Link href={`/players/${id}`}>
+    <Link href={`/players/${id}`} data-testid="Player-Navigation-Link">
       <Image
         src={url}
         width={245}
@@ -56,11 +57,9 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
         <LabelWithText label="Loose count" text={looseCount.toString()} />
 
         {widthBackHomeButton && (
-          <Link href={"/"}>
+          <Link href="/" data-testid="Go-Back-To-Home-Button">
             <div className="flex justify-center">
-              <button className="font-bold text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
-                Go back to home
-              </button>
+              <Button text="Go back to home" className="mt-4 mb-2" />
             </div>
           </Link>
         )}

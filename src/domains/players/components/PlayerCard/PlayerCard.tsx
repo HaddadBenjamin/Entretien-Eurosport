@@ -1,8 +1,9 @@
 import { IPlayer, IPlayerComputedProps } from "../../players.model";
-import PlayerLabel from "../PlayerLabel/PlayerLabel";
+import LabelWithText from "@/shared/components/LabelWithText/LabelWithText";
 import { formatMinutesToText } from "@/shared/utils/date";
 import Link from "next/link";
 import Image from "next/image";
+import Card from "@/shared/components/Card/Card";
 
 const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   firstname,
@@ -18,52 +19,54 @@ const PlayerCard: React.FC<IPlayer & IPlayerComputedProps> = ({
   looseCount = 0,
   widthBackHomeButton,
 }) => (
-  <Link
-    href={`/players/${id}`}
-    className="w-1/1 p-1 bg-gray-200 max-w-sm rounded overflow-hidden shadow-lg pt-4"
-  >
-    <Image
-      src={url}
-      width={245}
-      height={337.5}
-      alt={`Picture of ${firstname} ${lastname}`}
-      className="m-auto mt-4"
-    />
-    <div className="px-6 py-4">
-      <div className="flex mb-4 items-center justify-center">
-        <Image
-          src={countryUrl}
-          width={48}
-          height={32}
-          alt={`Flag of ${firstname} ${lastname}`}
-        />
-        <span className="font-bold text-xl ml-2">
-          {firstname} {lastname}
-        </span>
-      </div>
-      <PlayerLabel label="Rank" text={rank.toString()} />
-      <PlayerLabel label="Points" text={points.toString()} />
-      <PlayerLabel label="Weight" text={`${(weight / 1000).toString()}kg`} />
-      <PlayerLabel label="Height" text={`${(height / 100).toString()}m`} />
-      <PlayerLabel label="Age" text={age.toString()} />
-      <PlayerLabel
-        label="Time played"
-        text={formatMinutesToText(totalTimePlayed)}
+  <Card className="w-1/1 p-1 max-w-sm pt-4">
+    <Link href={`/players/${id}`}>
+      <Image
+        src={url}
+        width={245}
+        height={337.5}
+        alt={`Picture of ${firstname} ${lastname}`}
+        className="m-auto mt-4"
       />
-      <PlayerLabel label="Win count" text={winCount.toString()} />
-      <PlayerLabel label="Loose count" text={looseCount.toString()} />
+      <div className="px-6 py-4">
+        <div className="flex mb-4 items-center justify-center">
+          <Image
+            src={countryUrl}
+            width={48}
+            height={32}
+            alt={`Flag of ${firstname} ${lastname}`}
+          />
+          <span className="font-bold text-xl ml-2">
+            {firstname} {lastname}
+          </span>
+        </div>
+        <LabelWithText label="Rank" text={rank.toString()} />
+        <LabelWithText label="Points" text={points.toString()} />
+        <LabelWithText
+          label="Weight"
+          text={`${(weight / 1000).toString()}kg`}
+        />
+        <LabelWithText label="Height" text={`${(height / 100).toString()}m`} />
+        <LabelWithText label="Age" text={age.toString()} />
+        <LabelWithText
+          label="Time played"
+          text={formatMinutesToText(totalTimePlayed)}
+        />
+        <LabelWithText label="Win count" text={winCount.toString()} />
+        <LabelWithText label="Loose count" text={looseCount.toString()} />
 
-      {widthBackHomeButton && (
-        <Link href={"/"}>
-          <div className="flex justify-center">
-            <button className="font-bold text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
-              Go back to home
-            </button>
-          </div>
-        </Link>
-      )}
-    </div>
-  </Link>
+        {widthBackHomeButton && (
+          <Link href={"/"}>
+            <div className="flex justify-center">
+              <button className="font-bold text-xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2">
+                Go back to home
+              </button>
+            </div>
+          </Link>
+        )}
+      </div>
+    </Link>
+  </Card>
 );
 
 export default PlayerCard;

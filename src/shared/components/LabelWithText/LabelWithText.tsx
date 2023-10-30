@@ -3,11 +3,11 @@ interface IProps {
   text: string;
 }
 
-const PlayerLabel: React.FC<IProps> = ({ label, text }) => (
+const LabelWithText: React.FC<IProps> = ({ label, text }) => (
   <div className="flex">
     <span className="font-bold">{`${label}:`}</span>
     <span className="text-gray-700 text-base ml-1">{text}</span>
   </div>
 );
 
-export default PlayerLabel;
+export default LabelWithText;
